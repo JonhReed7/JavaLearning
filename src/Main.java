@@ -1,0 +1,45 @@
+void main() {
+    System.out.println(Arrays.toString(twoSum(new int[]{7, 9, 11, 2}, 9)));
+    System.out.println(binarySearch(new int[] { 2, 3, 4, 17, 22, 45, 100 }, 22));
+}
+
+public static int[] twoSum (int[] numbers, int target) {
+    Map<Integer, Integer> diffMap = new HashMap<>();
+
+    for (int index = 0; index < numbers.length; index++) {
+        int value = numbers[index];
+        Integer prevIndex = diffMap.get(value);
+
+        if (prevIndex != null) {
+            return new int[] { prevIndex, index };
+        }
+        diffMap.put(target - value, index);
+    }
+    return new int[] {};
+}
+
+/** Бинарный поиск, необходим отсортированный массив */
+public static int binarySearch (int[] numbers, int target) {
+    if (numbers == null) {
+        throw new IllegalArgumentException("Входящий массив не может быть null.");
+    }
+
+    int low = 0;
+    int high = numbers.length - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        int guess = numbers[mid];
+
+        if (guess == target) {
+            return mid;
+        } else if (guess > target) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
