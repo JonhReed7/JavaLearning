@@ -43,3 +43,7 @@ public static int binarySearch (int[] numbers, int target) {
     return -1;
 }
 
+public boolean isValid(String s) {
+    Stack<Character> stack = new Stack<>();
+
+}
