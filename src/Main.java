@@ -67,3 +67,28 @@ public boolean isValid(String s) {
     return stack.isEmpty();
 }
 
+public boolean isValid2(String s) {
+    Stack<Character> stack = new Stack<>();
+    Map<Character, Character> pairs = new HashMap<>(Map.of(
+            ')', '(',
+            ']', '[',
+            '}', '{'
+    ));
+
+    for (char c: s.toCharArray()) {
+        if (!pairs.containsKey(c)) {
+            stack.push(c);
+        } else {
+            if (stack.isEmpty()) {
+                return false;
+            }
+
+            char lastEl = stack.pop();
+            if (pairs.get(c) != lastEl) {
+                return false;
+            }
+        }
+    }
+
+    return stack.isEmpty();
+}
