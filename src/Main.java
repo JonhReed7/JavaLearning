@@ -92,3 +92,20 @@ public boolean isValid2(String s) {
 
     return stack.isEmpty();
 }
+
+public boolean isPalindrome(int number) {
+    if (number < 0) return false;
+    if (number < 10) return true;
+
+    int original = number;
+    int reversed = 0;
+
+    while (original > 0) {
+        int digit = original % 10;
+        reversed = reversed * 10 + digit;
+        original /= 10;
+    }
+
+    return number == reversed;
+}
+
