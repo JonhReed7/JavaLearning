@@ -143,3 +143,21 @@ public int sumBase(int n, int k) {
     return sum;
 }
 
+public int doecneoc(int[] numbers) {
+    Map<Integer, Integer> map = new HashMap<>();
+    int value = 0;
+
+    // 1 2 1 2 3 4 5 4 5
+    for (int number : numbers) {
+        if (map.containsKey(number)) {
+            map.remove(number);
+            value -= number;
+            continue;
+        }
+
+        map.put(number, number);
+        value += number;
+    }
+
+    return value;
+}
