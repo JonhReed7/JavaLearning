@@ -41,5 +41,15 @@
         return false;
     }
 
-    // todo - искать цикл в связанном списке
+
+    // два указателя с концов
+
+    public int maxProfit(int[] prices) {
+        int first = 0;
+        int last = prices.length - 1;
+
+        for (int i = 0; i < prices.length / 2; i++) {
+
+        }
+    }
 }
