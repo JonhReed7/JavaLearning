@@ -45,16 +45,6 @@
     // два указателя
 
     public int maxProfit(int[] prices) {
-        int left = 0;
-        int right = prices.length - 1;
-        int profit = 0;
-
-        for (int i = 0; i < prices.length / 2; i++) {
-            if (prices[left] - prices[right] > profit) {
-                profit = prices[left] - prices[right];
-            }
-        }
-
-        return profit;
+        
     }
 }
