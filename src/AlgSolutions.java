@@ -1,4 +1,9 @@
-﻿public class AlgSolutions {
+﻿import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.NoSuchElementException;
+import java.util.Stack;
+
+public class AlgSolutions {
     public int[] twoSum2(int[] numbers, int target) {
         int left = 0;
         int right = numbers.length - 1;
@@ -59,5 +64,38 @@
         }
 
         return maxProfit;
+    }
+
+    static class MyQueue {
+        private final Deque<Integer> in = new ArrayDeque<>();
+        private final Deque<Integer> out = new ArrayDeque<>();
+
+        public MyQueue() {}
+
+        public void push(int x) {
+            in.push(x);
+        }
+
+        public int pop() {
+            move();
+            if (out.isEmpty()) throw new NoSuchElementException("Queue is empty");
+            return out.pop();
+        }
+
+        public int peek() {
+            move();
+            if (out.isEmpty()) throw new NoSuchElementException("Queue is empty");
+            return out.peek();
+        }
+
+        public boolean empty() {
+            return in.isEmpty() && out.isEmpty();
+        }
+
+        private void move() {
+            if (out.isEmpty()) {
+                while (!in.isEmpty()) out.push(in.pop());
+            }
+        }
     }
 }
