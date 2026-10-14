@@ -1,7 +1,4 @@
-﻿import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.NoSuchElementException;
-import java.util.Stack;
+﻿import java.util.*;
 
 public class AlgSolutions {
     public int[] twoSum2(int[] numbers, int target) {
@@ -96,6 +93,36 @@ public class AlgSolutions {
             if (out.isEmpty()) {
                 while (!in.isEmpty()) out.push(in.pop());
             }
+        }
+    }
+
+    static class MyStack {
+        private Queue<Integer> q1 = new ArrayDeque<>();
+        private Queue<Integer> q2 = new ArrayDeque<>();
+
+        public MyStack() {}
+
+        public void push(int x) {
+            q2.add(x);
+            while(!q1.isEmpty()) q2.add(q1.remove());
+            Queue<Integer> temp = q1;
+            q1 = q2;
+            q2 = temp;
+        }
+
+        public int pop() {
+
+        }
+
+        public int top() {
+
+        }
+
+        public boolean empty() {
+            return q1.isEmpty();
+        }
+
+        private void move() {
         }
     }
 }
