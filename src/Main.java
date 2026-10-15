@@ -225,7 +225,8 @@ public int singleNumber(int[] numbers) {
 }
 
 public List<Integer> sortArray(List<Integer> numbers) {
-    if (numbers.size() == 1) return numbers;
+    if (numbers == null) throw new IllegalArgumentException("Bitch your stupid ass put a null list here");
+    if (numbers.size() <= 1) return numbers;
 
     int mid = numbers.size() / 2;
     List<Integer> left = sortArray(numbers.subList(0, mid));
