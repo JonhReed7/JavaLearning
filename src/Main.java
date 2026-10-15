@@ -263,3 +263,12 @@ public List<Integer> merge(List<Integer> left, List<Integer> right) {
     return result;
 }
 
+public int singleNumber2(int[] numbers) {
+    int result = 0;
+
+    for (int number : numbers) {
+        result ^= number;
+    }
+
+    return result;
+}
