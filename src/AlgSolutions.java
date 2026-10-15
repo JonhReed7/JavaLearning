@@ -111,18 +111,45 @@ public class AlgSolutions {
         }
 
         public int pop() {
-
+            if (q1.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            else return q1.remove();
         }
 
         public int top() {
-
+            return q1.element();
         }
 
         public boolean empty() {
             return q1.isEmpty();
         }
+    }
 
-        private void move() {
+    static class MyStack2 {
+        Deque<Integer> q1 = new ArrayDeque<>();
+        Deque<Integer> q2 = new ArrayDeque<>();
+
+        public MyStack2() {}
+
+        public void push(int x) {
+            q1.add(x);
+        }
+
+        public int pop() {
+            if (q1.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            for (int i = 0; i < q1.size() - 1; i++) q2.add(q1.remove());
+            int value = q1.remove();
+            Deque<Integer> temp = q1;
+            q1 = q2;
+            q2 = temp;
+            return value;
+        }
+
+        public int top() {
+            return q1.getLast();
+        }
+
+        public boolean empty() {
+            return q1.isEmpty();
         }
     }
 }
