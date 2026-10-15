@@ -159,4 +159,34 @@ public class AlgSolutions {
             return q1.isEmpty();
         }
     }
+
+    static class MyStack3 {
+        private final Queue<Integer> q = new ArrayDeque<>();
+
+        public MyStack3() {}
+
+        public void push(int x) {
+            q.add(x);
+        }
+
+        public int pop() {
+            if (q.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            int size = q.size();
+            for (int i = 0; i < size - 1; i++) q.add(q.remove());
+            return q.remove();
+        }
+
+        public int top() {
+            if (q.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            int size = q.size();
+            for (int i = 0; i < size - 1; i++) q.add(q.remove());
+            int result = q.element(); // лучше через peek(); но линтер ругается на гипотетический null
+            q.add(q.remove());
+            return result;
+        }
+
+        public boolean empty() {
+            return q.isEmpty();
+        }
+    }
 }
