@@ -145,7 +145,7 @@ public class AlgSolutions {
         }
 
         public int top() {
-            return q1.
+            return 0; // нет смысла, в любом случае н
         }
 
         public boolean empty() {
