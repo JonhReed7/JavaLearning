@@ -145,7 +145,14 @@ public class AlgSolutions {
         }
 
         public int top() {
-            return 0; // нет смысла, в любом случае н
+            // нет смысла, в любом случае н
+            if (q1.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            for (int i = 0; i <= q1.size() - 1; i++) q2.add(q1.remove());
+            int value = q1.element();
+            Queue<Integer> temp = q1;
+            q1 = q2;
+            q2 = temp;
+            return value;
         }
 
         public boolean empty() {
