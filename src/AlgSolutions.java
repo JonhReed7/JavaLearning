@@ -125,8 +125,8 @@ public class AlgSolutions {
     }
 
     static class MyStack2 {
-        Deque<Integer> q1 = new ArrayDeque<>();
-        Deque<Integer> q2 = new ArrayDeque<>();
+        Queue<Integer> q1 = new ArrayDeque<>();
+        Queue<Integer> q2 = new ArrayDeque<>();
 
         public MyStack2() {}
 
@@ -138,14 +138,14 @@ public class AlgSolutions {
             if (q1.isEmpty()) throw new NoSuchElementException("Stack is empty");
             for (int i = 0; i < q1.size() - 1; i++) q2.add(q1.remove());
             int value = q1.remove();
-            Deque<Integer> temp = q1;
+            Queue<Integer> temp = q1;
             q1 = q2;
             q2 = temp;
             return value;
         }
 
         public int top() {
-            return q1.getLast();
+            return q1.
         }
 
         public boolean empty() {
