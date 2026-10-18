@@ -189,4 +189,34 @@ public class AlgSolutions {
             return q.isEmpty();
         }
     }
+
+    class MinStack {
+        private final Deque<Integer> numbers = new ArrayDeque<>();
+        private final Deque<Integer> mins = new ArrayDeque<>();
+
+        public MinStack() {
+
+        }
+
+        public void push(int value) {
+            numbers.push(value);
+            if (mins.isEmpty() || mins.peek() >= value) mins.push(value);
+        }
+
+        public void pop() {
+            if (numbers.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            int value = numbers.pop();
+            if (value == mins.peek()) mins.pop();
+        }
+
+        public int top() {
+            if (numbers.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            return numbers.peek();
+        }
+
+        public int getMin() {
+            if (numbers.isEmpty() || mins.isEmpty()) throw new NoSuchElementException("Stack is empty");
+            return mins.peek();
+        }
+    }
 }
