@@ -205,7 +205,7 @@ public class AlgSolutions {
 
         public void pop() {
             int value = numbers.pop();
-            if (value == mins.peek()) mins.pop();
+            if (Objects.equals(numbers.pop(), mins.peek())) mins.pop();
         }
 
         public int top() {
