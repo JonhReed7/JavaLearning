@@ -190,7 +190,7 @@ public class AlgSolutions {
         }
     }
 
-    class MinStack {
+    static class MinStack {
         private final Deque<Integer> numbers = new ArrayDeque<>();
         private final Deque<Integer> mins = new ArrayDeque<>();
 
@@ -205,7 +205,7 @@ public class AlgSolutions {
 
         public void pop() {
             int value = numbers.pop();
-            if (Objects.equals(numbers.pop(), mins.peek())) mins.pop();
+            if (mins.peek() == value) mins.pop();
         }
 
         public int top() {
