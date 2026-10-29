@@ -252,4 +252,21 @@ public class AlgSolutions {
     public boolean isPowerOfTwo(int n) {
         return false;
     }
+
+    public void BFS(int[][] graph, int start) {
+        Queue<Integer> q = new ArrayDeque<>();
+        Set<Integer> seen = new HashSet<>();
+        q.add(start);
+
+        while (!q.isEmpty()) {
+            start = q.remove();
+            seen.add(start);
+            int[] neigh = graph[start];
+
+            for (int n : neigh) {
+                if (seen.contains(n)) continue;
+                q.add(n);
+            }
+        }
+    }
 }
