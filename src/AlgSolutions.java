@@ -269,4 +269,110 @@ public class AlgSolutions {
             }
         }
     }
+
+    public int evalRPN(String[] tokens) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (String t : tokens) {
+            if (t.equals("+") || t.equals("-") || t.equals("*") || t.equals("/")) {
+                int b = stack.pop();
+                int a = stack.pop();
+                if (t.equals("+")) stack.push(a + b);
+                else if (t.equals("-")) stack.push(a - b);
+                else if (t.equals("*")) stack.push(a * b);
+                else stack.push(a / b);
+            } else {
+                stack.push(Integer.parseInt(t));
+            }
+        }
+        return stack.pop();
+    }
+
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public boolean validPalindrome(String s) {
+        int l = 0, r = s.length() - 1;
+        while (l < r) {
+            if (s.charAt(l) != s.charAt(r)) {
+                return isPalindrome(s, l + 1, r) || isPalindrome(s, l, r - 1);
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+
+    private boolean isPalindrome(String s, int l, int r) {
+        while (l < r) {
+            if (s.charAt(l++) != s.charAt(r--)) return false;
+        }
+        return true;
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        int first = lowerBound(nums, target);
+        if (first == nums.length || nums[first] != target) {
+            return new int[]{-1, -1};
+        }
+        int last = lowerBound(nums, target + 1) - 1;
+        return new int[]{first, last};
+    }
+
+    private int lowerBound(int[] nums, int x) {
+        int l = 0, r = nums.length;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (nums[mid] < x) l = mid + 1;
+            else r = mid;
+        }
+        return l;
+    }
+
+    public List<Integer> diffWaysToCompute(String expression) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < expression.length(); i++) {
+            char c = expression.charAt(i);
+            if (c == '+' || c == '-' || c == '*') {
+                List<Integer> left = diffWaysToCompute(expression.substring(0, i));
+                List<Integer> right = diffWaysToCompute(expression.substring(i + 1));
+                for (int a : left) {
+                    for (int b : right) {
+                        if (c == '+') result.add(a + b);
+                        else if (c == '-') result.add(a - b);
+                        else result.add(a * b);
+                    }
+                }
+            }
+        }
+        if (result.isEmpty()) {
+            result.add(Integer.parseInt(expression));
+        }
+        return result;
+    }
+
+    public int minEatingSpeed(int[] piles, int h) {
+        int l = 1, r = 0;
+        for (int p : piles) r = Math.max(r, p);
+
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (canFinish(piles, mid, h)) r = mid;
+            else l = mid + 1;
+        }
+        return l;
+    }
+
+    private boolean canFinish(int[] piles, int speed, int h) {
+        long hours = 0;
+        for (int p : piles) {
+            hours += (p + speed - 1) / speed;
+        }
+        return hours <= h;
+    }
 }
