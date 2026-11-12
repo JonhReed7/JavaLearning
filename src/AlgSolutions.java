@@ -414,4 +414,11 @@ public class AlgSolutions {
 
         return isValidI(node, min, node.value) && isValidI(node, node.value, max);
     }
+
+    public void inOrder(TreeNode node) {
+        if (node == null) return;
+
+        inOrder(node.left);
+        inOrder(node.right);
+    }
 }
