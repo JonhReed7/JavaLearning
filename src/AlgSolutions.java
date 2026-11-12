@@ -389,10 +389,29 @@ public class AlgSolutions {
     }
 
     static class TreeNode {
-        private TreeNode left;
-        private TreeNode right;
-        private TreeNode previous;
+        protected TreeNode left;
+        protected TreeNode right;
+        protected TreeNode previous;
+        protected int value;
     }
 
+    public TreeNode findMost(TreeNode node) {
+        TreeNode current = node;
 
+        while (current != null) {
+            if (current.left != null) current = current.left;
+        }
+        // directions
+        return current;
+    }
+
+    public boolean isValid(TreeNode node) {
+
+    }
+
+    public boolean isValidI(TreeNode node, int min, int max) {
+        if (node.value < min || node.value > max) return false;
+
+        return isValidI(node, min, node.value) && isValidI(node, node.value, max);
+    }
 }
