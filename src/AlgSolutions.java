@@ -375,4 +375,24 @@ public class AlgSolutions {
         }
         return hours <= h;
     }
+
+    public int find(HashMap<Integer, Integer> graph) {
+        HashSet<Integer> visited = new HashSet<>();
+        int counter = 0;
+        visited.add(graph.get(0));
+
+        while (visited.size() != graph.size()){
+            // todo
+        }
+
+        return 1;
+    }
+
+    static class TreeNode {
+        private TreeNode left;
+        private TreeNode right;
+        private TreeNode previous;
+    }
+
+
 }
